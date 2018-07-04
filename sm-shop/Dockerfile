@@ -1,7 +1,7 @@
 FROM tomcat:8.5.15-jre8
 
 
-VOLUME /tmp
+
 
 # Delete existing ROOT folder
 RUN rm -rf /usr/local/tomcat/webapps/ROOT
