@@ -8,15 +8,13 @@ pipeline {
 
     stages{
 
-
-
-        stage('compile'){
+        stage('Compile'){
             steps{
                 sh 'mvn clean compile'
             }
 
         }
-        stage('test'){
+        stage('Test APIs'){
 
             steps{
                 sh 'mvn clean test'
@@ -28,7 +26,7 @@ pipeline {
             }
         }
 
-        stage('build artifacts'){
+        stage('Build Artifacts'){
 
             steps{
                 sh 'mvn clean package'
