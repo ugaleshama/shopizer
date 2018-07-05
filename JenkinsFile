@@ -9,6 +9,13 @@ pipeline {
     }
 
     stages{
+
+        stage('Clone sources') {
+            git( url: 'https://github.com/bhiravabhatla/shopizer.git',
+                 credentialsId: 'gitcreds',
+                 branch:'2.2.0')
+        }
+
         stage('compile'){
             steps{
                 sh 'mvn clean compile'
