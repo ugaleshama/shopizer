@@ -1,0 +1,46 @@
+pipeline {
+
+        agent {
+            dockerfile true
+        }
+
+    tools{
+        maven 'maven'
+    }
+
+    stages{
+        stage('compile'){
+            steps{
+                sh 'mvn clean compile'
+            }
+
+        }
+        stage('test'){
+
+            steps{
+                sh 'mvn clean test'
+            }
+            post {
+                success{
+                    echo 'All Tests passes successfully!!'
+                }
+            }
+        }
+
+        stage('build artifacts'){
+
+            steps{
+                sh 'mvn clean package'
+
+            }
+            post {
+                success{
+                    echo 'Now Archiving ..'
+                    archiveArtifacts artifacts: 'sm-shop/target/shop.war, dockerFile'
+                }
+            }
+        }
+
+    }
+
+}
