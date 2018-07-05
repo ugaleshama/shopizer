@@ -38,6 +38,7 @@ pipeline {
                     archiveArtifacts artifacts: 'sm-shop/target/shop.war, dockerFile'
                 }
             }
+          }
 
         stage('Build Image'){
 
@@ -54,5 +55,3 @@ pipeline {
         }
 
     }
-
-}
