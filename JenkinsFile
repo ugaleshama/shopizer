@@ -38,6 +38,19 @@ pipeline {
                     archiveArtifacts artifacts: 'sm-shop/target/shop.war, dockerFile'
                 }
             }
+
+        stage('Build Image'){
+
+             steps{
+                        echo 'Building Image ..'
+                        sh 'cd sm-shop'
+
+                    script{
+                        docker.build("shopImage:$BUILD_ID")
+
+                    }
+                }
+            }
         }
 
     }
