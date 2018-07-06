@@ -9,7 +9,7 @@ pipeline {
 
     environment {
 
-        PATH='$PATH:/Applications/Docker.app/Contents/Resources/bin/'
+        DOCKER_HOME='/Applications/Docker.app/Contents/Resources/bin/'
     }
 
     stages{
@@ -53,7 +53,7 @@ pipeline {
 
 
                     script{
-                       sh ' docker build -t shop:$BUILD_ID sm-shop/. '
+                       sh ' $DOCKER_HOME/docker build -t shop:$BUILD_ID sm-shop/. '
 
                     }
                 }
