@@ -9,7 +9,7 @@ pipeline {
 
     environment {
 
-        DOCKER_HOME='/Applications/Docker.app/Contents/Resources/bin/'
+        DOCKER_HOME='/Applications/Docker.app/Contents/Resources/bin'
     }
 
     stages{
@@ -65,7 +65,7 @@ pipeline {
 
 
                              script{
-                                sh 'BUILD_ID=dontKillMe $DOCKER_HOME/docker container run -d -p 9092:8080 '
+                                sh 'BUILD_ID=dontKillMe $DOCKER_HOME/docker container run -d -p 9092:8080 shop:$BUILD_ID'
 
                              }
                          }
