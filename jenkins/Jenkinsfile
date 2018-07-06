@@ -9,46 +9,46 @@ pipeline {
 
     stages{
 
-        stage('Compile'){
-            steps{
-                sh 'mvn clean compile'
-            }
+        // stage('Compile'){
+        //     steps{
+        //         sh 'mvn clean compile'
+        //     }
 
-        }
-        stage('Test APIs'){
+        // }
+        // stage('Test APIs'){
 
-            steps{
-                sh 'mvn clean test'
-            }
-            post {
-                success{
-                    echo 'All Tests passes successfully!!'
-                }
-            }
-        }
+        //     steps{
+        //         sh 'mvn clean test'
+        //     }
+        //     post {
+        //         success{
+        //             echo 'All Tests passes successfully!!'
+        //         }
+        //     }
+        // }
 
-        stage('Build Artifacts'){
+        // stage('Build Artifacts'){
 
-            steps{
-                sh 'mvn clean package'
+        //     steps{
+        //         sh 'mvn clean package'
 
-            }
-            post {
-                success{
-                    echo 'Now Archiving ..'
-                    archiveArtifacts artifacts: 'sm-shop/target/shop.war, dockerFile'
-                }
-            }
-          }
+        //     }
+        //     post {
+        //         success{
+        //             echo 'Now Archiving ..'
+        //             archiveArtifacts artifacts: 'sm-shop/target/shop.war, dockerFile'
+        //         }
+        //     }
+        //   }
 
         stage('Build Image'){
 
              steps{
                         echo 'Building Image ..'
-                        sh 'cd sm-shop'
+
 
                     script{
-                       sh ' /Applications/Docker.app/Contents/Resources/bin/docker build -t shop:$BUILD_ID . '
+                       sh ' /Applications/Docker.app/Contents/Resources/bin/docker build -t shop:$BUILD_ID sm-shop/. '
 
                     }
                 }
