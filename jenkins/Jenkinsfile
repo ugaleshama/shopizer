@@ -48,7 +48,7 @@ pipeline {
                         sh 'cd sm-shop'
 
                     script{
-                       sh ' /Applications/Docker.app/Contents/Resources/bin/docker build -t shopImage:$BUILD_ID . '
+                       sh ' /Applications/Docker.app/Contents/Resources/bin/docker build -t shop:$BUILD_ID . '
 
                     }
                 }
