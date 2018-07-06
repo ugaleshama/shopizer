@@ -1,14 +1,10 @@
 pipeline {
 
-        agent {
-                docker {
-                  image 'maven:3.5.0'
-                }
-             }
+        agent any
 
     tools{
         maven 'maven'
-       
+
     }
 
     stages{
@@ -52,7 +48,7 @@ pipeline {
                         sh 'cd sm-shop'
 
                     script{
-                        docker.build("shopImage:$BUILD_ID")
+                       sh ' /Applications/Docker.app/Contents/Resources/bin/docker build -t shopImage:$BUILD_ID . '
 
                     }
                 }
