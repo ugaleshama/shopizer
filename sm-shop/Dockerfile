@@ -12,5 +12,5 @@ ENV JAVA_OPTS="-Xmx1024m"
 
 CMD catalina.sh run
 
-EXPOSE 9090
+EXPOSE 8080
 

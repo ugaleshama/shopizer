@@ -66,7 +66,7 @@ pipeline {
 
 
                              script{
-                                sh 'BUILD_ID=dontKillMe $DOCKER_HOME/docker container run -d -p 9092:9090 shop:$BUILD_ID'
+                                sh 'BUILD_ID=dontKillMe $DOCKER_HOME/docker container run -d -p 9092:8080 shop:$BUILD_ID'
 
                              }
                          }
