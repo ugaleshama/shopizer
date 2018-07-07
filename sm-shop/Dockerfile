@@ -10,7 +10,7 @@ ADD ./target/shop.war /usr/local/tomcat/webapps/
 
 ENV JAVA_OPTS="-Xmx1024m"
 
-CMD ["catalina.sh", "run"]
+CMD catalina.sh run
 
 EXPOSE 9090
 
