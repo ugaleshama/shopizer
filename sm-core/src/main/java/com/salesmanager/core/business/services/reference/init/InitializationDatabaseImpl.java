@@ -210,7 +210,7 @@ public class InitializationDatabaseImpl implements InitializationDatabase {
 		store.setDefaultLanguage(en);
 		store.setInBusinessSince(date);
 		store.setZone(qc);
-		store.setStorename("Default store");
+		store.setStorename(" TW  Store");
 		store.setStorephone("888-888-8888");
 		store.setCode(MerchantStore.DEFAULT_STORE);
 		store.setStorecity("My city");
