@@ -66,12 +66,12 @@ pipeline {
                 sh 'BUILD_ID=dontKillMe $DOCKER_HOME/docker container run -d -p 9092:8080 --name=shop shop:$BUILD_ID '
 
             }
-//            post {
-//                success {
-//
-//
-//                }
-//            }
+            post {
+                success {
+
+                  build 'shopizer-functional-tests'
+                }
+            }
         }
     }
 
