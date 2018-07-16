@@ -1,0 +1,78 @@
+pipeline {
+
+    agent any
+
+    tools {
+        maven 'maven'
+
+    }
+
+    environment {
+
+        DOCKER_HOME = '/Applications/Docker.app/Contents/Resources/bin'
+    }
+
+    stages {
+
+        stage('Compile') {
+            steps {
+
+                sh 'mvn clean compile'
+            }
+
+        }
+        stage('Test APIs') {
+
+            steps {
+                sh 'mvn clean test'
+            }
+            post {
+                success {
+                    echo 'All Tests passes successfully!!'
+                }
+            }
+        }
+
+        stage('Build Artifacts') {
+
+            steps {
+                sh 'mvn clean package'
+
+            }
+            post {
+                success {
+                    echo 'Now Archiving ..'
+                    archiveArtifacts artifacts: 'sm-shop/target/shop.war, dockerFile'
+                }
+            }
+        }
+
+        stage('Build Image') {
+
+            steps {
+
+                echo 'Building Image ..'
+                sh ' $DOCKER_HOME/docker build -t shop:$BUILD_ID sm-shop/. '
+
+            }
+        }
+    }
+    stage('Deploy Image') {
+
+        steps {
+
+            echo 'Deploying Image ..'
+            sh '$DOCKER_HOME/docker container rm -f shop || true'
+            sh 'BUILD_ID=dontKillMe $DOCKER_HOME/docker container run -d -p 9092:8080 --name=shop shop:$BUILD_ID '
+
+        }
+        post {
+            success {
+
+
+            }
+        }
+    }
+}
+
+
