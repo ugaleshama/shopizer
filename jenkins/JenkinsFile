@@ -69,7 +69,8 @@ pipeline {
             post {
                 success {
 
-                  build 'shopizer-functional-tests'
+                    build job: 'shopizer-functional-tests', wait: false
+
                 }
             }
         }
