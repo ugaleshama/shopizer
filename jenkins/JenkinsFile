@@ -21,7 +21,7 @@ pipeline {
             }
 
         }
-        stage('Test APIs') {
+        stage('Run Unit Tests') {
 
             steps {
                 sh 'mvn clean test'
@@ -36,7 +36,7 @@ pipeline {
         stage('Build Artifacts') {
 
             steps {
-                sh 'mvn clean package'
+                sh 'mvn clean package -DskipTests'
 
             }
             post {
