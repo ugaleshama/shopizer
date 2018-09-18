@@ -1,12 +1,9 @@
 pipeline {
 
-    agent {
+    agent any
 
-      node
-        {
-
-        checkout([$class: 'GitSCM', branches: [[name: '2.2.0']], doGenerateSubmoduleConfigurations: false, extensions: [[$class: 'CloneOption', noTags: false, reference: '', shallow: true, timeout: 20]], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'gitcreds', url: 'https://github.com/bhiravabhatla/shopizer.git']]])
-        }
+    options {
+        skipDefaultCheckout()
     }
 
     tools {
@@ -21,6 +18,12 @@ pipeline {
 
     stages {
 
+        stage ('checkout'){
+
+            steps{
+                checkout([$class: 'GitSCM', branches: [[name: '2.2.0']], doGenerateSubmoduleConfigurations: false, extensions: [[$class: 'CloneOption', noTags: false, reference: '', shallow: true, timeout: 20]], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'gitcreds', url: 'https://github.com/bhiravabhatla/shopizer.git']]])
+            }
+        }
         stage('Compile') {
             steps {
 
