@@ -82,6 +82,10 @@ public class AjaxPageableResponse extends AjaxResponse {
 	}
 
 
+	public void shamaCommits(){
+		System.out.println("hello, this is from me");
+	}
+
 
 	public int getEndRow() {
 		return endRow;
